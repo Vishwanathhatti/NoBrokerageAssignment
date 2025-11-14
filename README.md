@@ -27,6 +27,55 @@ A modern, responsive property listing platform built with Next.js, featuring an 
 - **CORS**: cors middleware
 - **Logging**: Morgan
 
+## 📡 API Documentation
+
+The backend provides RESTful APIs for property management and admin authentication. All API endpoints are prefixed with `/api`.
+
+### Authentication Endpoints
+- **POST** `/api/admin/register` - Register a new admin user
+  - Body: `{ "username": "string", "password": "string" }`
+- **POST** `/api/admin/login` - Login admin and get JWT token
+  - Body: `{ "username": "string", "password": "string" }`
+  - Response: `{ "token": "jwt_token", "admin": { "id": "string", "username": "string" } }`
+
+### Property Endpoints
+- **GET** `/api/properties` - Get all properties (supports query parameters for filtering)
+  - Query params: `location`, `minPrice`, `maxPrice`, `projectName`
+  - Response: `{ "properties": [...], "total": number }`
+- **GET** `/api/properties/:id` - Get property by ID
+  - Response: Property object with full details
+- **POST** `/api/properties` - Create a new property (requires authentication)
+  - Headers: `Authorization: Bearer <jwt_token>`
+  - Body: Form data with property details and image files
+  - Files: `main_image` (single), `gallery_images` (up to 10)
+- **PUT** `/api/properties/:id` - Update property by ID (requires authentication)
+  - Headers: `Authorization: Bearer <jwt_token>`
+  - Body: Form data with updated property details and optional image files
+- **DELETE** `/api/properties/:id` - Delete property by ID (requires authentication)
+  - Headers: `Authorization: Bearer <jwt_token>`
+
+### Utility Endpoints
+- **GET** `/api/health` - Health check endpoint
+  - Response: `{ "status": "OK", "message": "Server is running", "timestamp": "ISO_string" }`
+- **GET** `/api/endpoints` - List all available API endpoints
+  - Response: `{ "endpoints": [ { "method": "string", "path": "string", "description": "string" } ] }`
+
+### File Uploads
+- Images are served statically from `/uploads` path
+- Supported formats: JPEG, PNG, WebP
+- Maximum file size: 5MB per image
+- Main image: 1 file allowed
+- Gallery images: Up to 10 files allowed
+
+### Error Handling
+All endpoints return standard HTTP status codes and JSON error responses:
+```json
+{
+  "message": "Error description",
+  "stack": "Error stack (development only)"
+}
+```
+
 ## ✨ Features
 
 ### User Features
@@ -146,6 +195,19 @@ backend/
 
 ### Backend Setup
 Ensure the backend server is running on the specified port (default: 5000). Refer to the backend README for detailed setup instructions.
+
+#### Backend Environment Variables
+Create a `.env` file in the `backend/` directory with the following variables:
+```env
+PORT=5000
+MONGO_URI=mongodb://localhost:27017/propertyhub
+JWT_SECRET=your_jwt_secret_key_here
+NODE_ENV=development
+```
+- `PORT`: Port on which the server runs (default: 5000)
+- `MONGO_URI`: MongoDB connection string
+- `JWT_SECRET`: Secret key for JWT token generation
+- `NODE_ENV`: Environment mode (development/production)
 
 ## 📜 Available Scripts
 
