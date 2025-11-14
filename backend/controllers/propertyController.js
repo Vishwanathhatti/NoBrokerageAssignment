@@ -30,8 +30,8 @@ const getProperties = async (req, res) => {
     // Add full URLs for images
     const propertiesWithUrls = properties.map(property => ({
       ...property.toObject(),
-      main_image: `http://localhost:${process.env.PORT || 5000}/uploads/${property.main_image}`,
-      gallery_images: property.gallery_images.map(img => `http://localhost:${process.env.PORT || 5000}/uploads/${img}`),
+      main_image: `/uploads/${property.main_image}`,
+      gallery_images: property.gallery_images.map(img => `/uploads/${img}`),
     }));
 
     res.json(propertiesWithUrls);
@@ -52,8 +52,8 @@ const getPropertyById = async (req, res) => {
       // Add full URLs for images
       const propertyWithUrls = {
         ...property.toObject(),
-        main_image: `http://localhost:${process.env.PORT || 5000}/uploads/${property.main_image}`,
-        gallery_images: property.gallery_images.map(img => `http://localhost:${process.env.PORT || 5000}/uploads/${img}`),
+        main_image: `/uploads/${property.main_image}`,
+        gallery_images: property.gallery_images.map(img => `/uploads/${img}`),
       };
 
       res.json(propertyWithUrls);
@@ -96,8 +96,8 @@ const createProperty = async (req, res) => {
     // Add full URLs for images
     const propertyWithUrls = {
       ...createdProperty.toObject(),
-      main_image: `http://localhost:${process.env.PORT || 5000}/uploads/${createdProperty.main_image}`,
-      gallery_images: createdProperty.gallery_images.map(img => `http://localhost:${process.env.PORT || 5000}/uploads/${img}`),
+      main_image: `/uploads/${createdProperty.main_image}`,
+      gallery_images: createdProperty.gallery_images.map(img => `/uploads/${img}`),
     };
 
     res.status(201).json(propertyWithUrls);
@@ -137,8 +137,8 @@ const updateProperty = async (req, res) => {
       // Add full URLs for images
       const propertyWithUrls = {
         ...updatedProperty.toObject(),
-        main_image: `http://localhost:${process.env.PORT || 5000}/uploads/${updatedProperty.main_image}`,
-        gallery_images: updatedProperty.gallery_images.map(img => `http://localhost:${process.env.PORT || 5000}/uploads/${img}`),
+        main_image: `/uploads/${updatedProperty.main_image}`,
+        gallery_images: updatedProperty.gallery_images.map(img => `/uploads/${img}`),
       };
 
       res.json(propertyWithUrls);

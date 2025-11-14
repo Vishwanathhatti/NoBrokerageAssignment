@@ -39,7 +39,7 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
     <div className="space-y-4">
       <div className="relative h-64 w-full overflow-hidden rounded-lg bg-secondary sm:h-96 lg:h-[500px]">
         <img
-          src={images[currentIndex] || '/placeholder.svg?height=500&width=800&query=property'}
+          src={images[currentIndex] ? `${process.env.NEXT_PUBLIC_API_BASE_URL?.replace('/api', '')}${images[currentIndex]}` : '/placeholder.svg?height=500&width=800&query=property'}
           alt={`${title} - Image ${currentIndex + 1}`}
           className="h-full w-full object-cover"
         />
@@ -81,7 +81,7 @@ export function ImageCarousel({ images, title }: ImageCarouselProps) {
               }`}
             >
               <img
-                src={image || '/placeholder.svg?height=80&width=80&query=property'}
+                src={image ? `${process.env.NEXT_PUBLIC_API_BASE_URL?.replace('/api', '')}${image}` : '/placeholder.svg?height=80&width=80&query=property'}
                 alt={`Thumbnail ${index + 1}`}
                 className="h-full w-full object-cover"
               />
