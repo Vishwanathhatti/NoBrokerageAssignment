@@ -14,7 +14,7 @@ export function PropertyCard({ property }: PropertyCardProps) {
         {/* Image Container */}
         <div className="relative h-64 w-full overflow-hidden bg-secondary">
           <img
-            src={property.main_image || '/placeholder.svg?height=256&width=400&query=property'}
+            src={property.main_image ? `${process.env.NEXT_PUBLIC_API_BASE_URL?.replace('/api', '')}${property.main_image}` : '/placeholder.svg?height=256&width=400&query=property'}
             alt={property.project_name}
             className="h-full w-full object-cover transition-transform group-hover:scale-105"
           />
