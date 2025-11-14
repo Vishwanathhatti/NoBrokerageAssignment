@@ -1,0 +1,120 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --orange: #FF6200;
+  --dark-grey: #1A1A1A;
+  --light-grey: #F5F5F5;
+  --white: #FFFFFF;
+  --accent-grey: #6E6E6E;
+  
+  --background: var(--white);
+  --foreground: var(--dark-grey);
+  --card: var(--white);
+  --card-foreground: var(--dark-grey);
+  --primary: var(--orange);
+  --primary-foreground: var(--white);
+  --secondary: var(--light-grey);
+  --secondary-foreground: var(--dark-grey);
+  --muted: var(--light-grey);
+  --muted-foreground: var(--accent-grey);
+  --accent: var(--orange);
+  --accent-foreground: var(--white);
+  --destructive: #EF4444;
+  --destructive-foreground: var(--white);
+  --border: #E5E7EB;
+  --input: var(--white);
+  --ring: var(--orange);
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: var(--dark-grey);
+  --foreground: var(--white);
+  --card: #2A2A2A;
+  --card-foreground: var(--white);
+  --primary: var(--orange);
+  --primary-foreground: var(--white);
+  --secondary: #333333;
+  --secondary-foreground: var(--light-grey);
+  --muted: #3A3A3A;
+  --muted-foreground: var(--accent-grey);
+  --accent: var(--orange);
+  --accent-foreground: var(--white);
+  --border: #404040;
+  --input: #2A2A2A;
+  --ring: var(--orange);
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  input[type="text"],
+  input[type="number"],
+  input[type="email"],
+  input[type="password"],
+  textarea,
+  select {
+    @apply rounded-md border border-border bg-background px-3 py-2 text-sm text-foreground;
+    @apply focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary/50;
+    @apply placeholder:text-muted-foreground;
+  }
+}
+
+@layer utilities {
+  .line-clamp-1 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+  }
+  
+  .line-clamp-2 {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}

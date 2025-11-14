@@ -1,0 +1,23 @@
+{
+  "name": "no-brokerage-assignment",
+  "version": "1.0.0",
+  "description": "This project was created for executing the provided assignment by NoBrokerage.com",
+  "license": "ISC",
+  "author": "Vishwanath Hatti",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.3",
+    "morgan": "^1.10.1",
+    "multer": "^2.0.2"
+  }
+}
