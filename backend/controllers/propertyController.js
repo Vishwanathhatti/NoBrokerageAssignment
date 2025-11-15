@@ -159,7 +159,7 @@ const deleteProperty = async (req, res) => {
     const property = await Property.findById(req.params.id);
 
     if (property) {
-      await property.remove();
+      await property.deleteOne();
       res.json({ message: 'Property removed' });
     } else {
       res.status(404).json({ message: 'Property not found' });
